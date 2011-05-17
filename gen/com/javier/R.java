@@ -14,12 +14,14 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int dc_time=0x7f050001;
-        public static final int et_value=0x7f050002;
-        public static final int lv_datasets=0x7f050005;
-        public static final int txt_app_name=0x7f050004;
-        public static final int txt_data_set_name=0x7f050000;
-        public static final int txt_dataset=0x7f050003;
+        public static final int dc_time=0x7f050002;
+        public static final int et_value=0x7f050003;
+        public static final int lv_datasets=0x7f050007;
+        public static final int lv_records=0x7f050004;
+        public static final int scrl_add_a_data_point=0x7f050000;
+        public static final int txt_app_name=0x7f050006;
+        public static final int txt_data_set_name=0x7f050001;
+        public static final int txt_dataset=0x7f050005;
     }
     public static final class layout {
         public static final int add_a_data_point=0x7f030000;
