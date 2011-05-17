@@ -13,18 +13,22 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TimeUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.DigitalClock;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddADataPoint extends Activity {
+public class AddADataPoint extends Activity implements OnClickListener {
 	private static final String TAG = "AddADataPoint";
 	private TextView txt_dataset;
 	private DigitalClock dc_clock;
 	private EditText et_value;
 	private ListView lv_records;
+	private Button btn_add_data_point;
 	private String[] mColumns = {"firstcolumn","secondcolumn"};
 	private ArrayList<Record> mRecords;
 	private SpreadSheet mSs;
@@ -41,14 +45,14 @@ public class AddADataPoint extends Activity {
 		et_value = (EditText) findViewById(R.id.et_value);
 		dc_clock = (DigitalClock) findViewById(R.id.dc_time);
 		lv_records = (ListView) findViewById(R.id.lv_records);
+		btn_add_data_point = (Button) findViewById(R.id.btn_add_data_point);
 		
 		if( null == txt_dataset ) Log.d(TAG, "txt_dataset is null;");
 		else Log.d(TAG, "txt_dataset is NOT null;");
 		txt_dataset.setText(getIntent().getExtras().getString("sheet_name"));
 		Toast.makeText(this, getIntent().getExtras().getString("sheet_name"), Toast.LENGTH_LONG);
 
-		dc_clock.setEnabled(true);
-		dc_clock.setText("broken string?");
+		btn_add_data_point.setOnClickListener(this);
 		
 		Log.d(TAG, "Toast.makeText(this, getIntent().getExtras().getString(sheet_name), Toast.LENGTH_LONG);");
 		
@@ -74,6 +78,17 @@ public class AddADataPoint extends Activity {
 		record.put("firstcolumn", Long.toString( System.currentTimeMillis() ) );
 		record.put("secondcolumn", Long.toString(val) );
 		mWs.addRecord(mSs.getKey(), record);
+		
+	}
+
+	public void onClick(View v) {
+		switch(v.getId()){
+		case R.id.btn_add_data_point:
+				recordDataPoint( Long.parseLong(et_value.getText().toString())  );
+				break;
+		default:
+			break;
+		}
 		
 	}
 }
